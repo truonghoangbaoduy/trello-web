@@ -5,23 +5,32 @@
 > Nguồn khóa học - [Thực chiến MERN Stack Pro](https://www.youtube.com/playlist?list=PLP6tw4Zpj-RJP2-YrhtkWqObMQ-AA4TDy).
 
 ## 1. Cài đặt môi trường cho dự án
+
 - Nodejs 16.16.0
-<br />
+  <br />
 
 ## 2. Vite, Create React App và NextJS - Lựa chọn cái nào?
+
 - vite và create-react-app là build tool, còn nextjs là framework.
-<br />
+  <br />
 
 ## 3. JSX là gì?
+
 - Định nghĩa JSX - [Writing markup with JSX](https://react.dev/learn/writing-markup-with-jsx).
 - Truyền biến động / logic - [JavaScript in JSX with Curly Braces](https://react.dev/learn/javascript-in-jsx-with-curly-braces).
 - .JS vs .JSX - [Stack Overflow Discussion](https://stackoverflow.com/questions/46169472/reactjs-js-vs-jsx)
-<br />
+  <br />
 
 ## 5. Semantic Versioning là gì?
+
 - Định nghĩa Semantic Versioning - [GeeksForGeeks](https://www.geeksforgeeks.org/introduction-semantic-versioning/)
-<br />
+  <br />
 
 ## 6. ESlint - Hãy biết Clean Code là gì?
+
 - Getting started - [ESLint](https://eslint.org/docs/latest/use/getting-started).
-<br />
+  <br />
+
+## 7. CSS Baseline - Nhất quán giữa các trình duyệt
+
+- Normalize CSS - [normalize.css](https://github.com/necolas/normalize.css/).
