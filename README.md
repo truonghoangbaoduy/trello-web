@@ -1,8 +1,27 @@
-# React + Vite
+# Trello Web
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> [!NOTE]
+> MERN Stack Pro - Học Lập Trình qua dự án thực tế Trello Clone.
+> Nguồn khóa học - [Thực chiến MERN Stack Pro](https://www.youtube.com/playlist?list=PLP6tw4Zpj-RJP2-YrhtkWqObMQ-AA4TDy).
 
-Currently, two official plugins are available:
+## 1. Cài đặt môi trường cho dự án
+- Nodejs 16.16.0
+<br />
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 2. Vite, Create React App và NextJS - Lựa chọn cái nào?
+- vite và create-react-app là build tool, còn nextjs là framework.
+<br />
+
+## 3. JSX là gì?
+- Định nghĩa JSX - [Writing markup with JSX](https://react.dev/learn/writing-markup-with-jsx).
+- Truyền biến động / logic - [JavaScript in JSX with Curly Braces](https://react.dev/learn/javascript-in-jsx-with-curly-braces).
+- .JS vs .JSX - [Stack Overflow Discussion](https://stackoverflow.com/questions/46169472/reactjs-js-vs-jsx)
+<br />
+
+## 5. Semantic Versioning là gì?
+- Định nghĩa Semantic Versioning - [GeeksForGeeks](https://www.geeksforgeeks.org/introduction-semantic-versioning/)
+<br />
+
+## 6. ESlint - Hãy biết Clean Code là gì?
+- Getting started - [ESLint](https://eslint.org/docs/latest/use/getting-started).
+<br />
