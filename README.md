@@ -34,3 +34,8 @@
 ## 7. CSS Baseline - Nhất quán giữa các trình duyệt
 
 - Normalize CSS - [normalize.css](https://github.com/necolas/normalize.css/).
+  <br />
+
+## 8. Theming trong Material UI
+
+- Customize theme - [MUI Theme](https://mui.com/material-ui/customization/theming/#createtheme-options-args-theme).
