@@ -1,5 +1,7 @@
 import Box from "@mui/material/Box";
 import ModeSelect from "../ModeSelect";
+//Icons
+import AppsIcon from "@mui/icons-material/Apps";
 
 const AppBar = () => {
   return (
@@ -11,7 +13,13 @@ const AppBar = () => {
         alighItems: "center",
       }}
     >
-      <ModeSelect />
+      <Box>
+        <AppsIcon />
+        Trello
+      </Box>
+      <Box>
+        <ModeSelect />
+      </Box>
     </Box>
   );
 };
