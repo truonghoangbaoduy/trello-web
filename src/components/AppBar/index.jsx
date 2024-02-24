@@ -1,6 +1,5 @@
 import Box from "@mui/material/Box";
 import ModeSelect from "../ModeSelect";
-//Icons
 import AppsIcon from "@mui/icons-material/Apps";
 
 const AppBar = () => {
@@ -11,6 +10,7 @@ const AppBar = () => {
         height: (theme) => theme.trello.appBarHeight,
         display: "flex",
         alighItems: "center",
+        justifyItems: "space-between",
       }}
     >
       <Box>
