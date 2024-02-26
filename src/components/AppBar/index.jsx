@@ -1,5 +1,5 @@
 import Box from "@mui/material/Box";
-import ModeSelect from "../ModeSelect";
+import ModeSelect from "~/components/ModeSelect";
 import AppsIcon from "@mui/icons-material/Apps";
 
 const AppBar = () => {
