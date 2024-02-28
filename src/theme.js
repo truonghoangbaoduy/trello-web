@@ -9,18 +9,14 @@ const theme = extendTheme({
   colorSchemes: {
     light: {
       palette: {
-        primary: {
-          main: teal[500],
-          secondary: deepOrange[500],
-        },
+        primary: teal,
+        secondary: deepOrange,
       },
     },
     dark: {
       palette: {
-        primary: {
-          main: cyan[500],
-          secondary: orange[500],
-        },
+        primary: cyan,
+        secondary: orange,
       },
     },
   },

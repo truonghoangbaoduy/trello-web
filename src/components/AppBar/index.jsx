@@ -13,6 +13,8 @@ import AppsIcon from "@mui/icons-material/Apps";
 import TrelloIcon from "~/assets/trello.svg?react";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+import LibraryAddIcon from "@mui/icons-material/LibraryAdd";
+
 import Recent from "./Menus/Recent";
 import Starred from "./Menus/Starred";
 import Templates from "./Menus/Templates";
@@ -75,7 +77,9 @@ const AppBar = () => {
           <Recent />
           <Starred />
           <Templates />
-          <Button variant="outlined">Create</Button>
+          <Button variant="outlined" startIcon={<LibraryAddIcon />}>
+            Create
+          </Button>
         </Box>
       </Box>
       <Box
