@@ -6,13 +6,15 @@ import BoltIcon from "@mui/icons-material/Bolt";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 
+const USERS = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"];
+
 const MENU_STYLES = {
-  color: "primary.main",
-  bgcolor: "white",
+  color: "white",
+  bgcolor: "transparent",
   padding: "5px",
   borderRadius: "4px",
-  "& .MuiSvgIcon-root": {
-    color: "primary.main",
+  ".MuiSvgIcon-root": {
+    color: "white",
   },
   "&:hover": {
     bgcolor: "primary.50",
@@ -31,7 +33,9 @@ const BoardBar = () => {
         justifyContent: "space-between",
         gap: 2,
         overflowX: "auto",
-        borderTop: "1px solid #00bfa5",
+        bgcolor: (theme) =>
+          theme.palette.mode === "dark" ? "#34495e" : "#1976d2",
+        borderBottom: "1px solid white",
       }}
     >
       <Box
@@ -79,34 +83,43 @@ const BoardBar = () => {
           gap: 2,
         }}
       >
-        <Button variant="outlined" startIcon={<PersonAddIcon />}>
+        <Button
+          sx={{
+            color: "white",
+            borderColor: "white",
+            ":hover": {
+              borderColor: "white",
+            },
+          }}
+          variant="outlined"
+          startIcon={<PersonAddIcon />}
+        >
           Invite
         </Button>
         <AvatarGroup
-          max={4}
+          max={7}
           sx={{
+            gap: "10px",
             "& .MuiAvatar-root": {
-              height: "34px",
-              width: "34px",
+              height: 34,
+              width: 34,
               fontSize: 16,
+              border: "none",
             },
           }}
         >
           <Tooltip title="Member">
             <Avatar alt="Duy Truong" src="src/assets/profile-picture.jpg" />
           </Tooltip>
-          <Tooltip title="Member">
-            <Avatar alt="A" src="" />
-          </Tooltip>
-          <Tooltip title="Member">
-            <Avatar alt="B" src="" />
-          </Tooltip>
-          <Tooltip title="Member">
-            <Avatar alt="C" src="" />
-          </Tooltip>
-          <Tooltip title="Member">
-            <Avatar alt="D" src="" />
-          </Tooltip>
+          {USERS &&
+            USERS.length > 0 &&
+            USERS.map((user, index) => (
+              <Tooltip key={`member-${index}`} title="Member">
+                <Avatar alt="Member" src="">
+                  {user}
+                </Avatar>
+              </Tooltip>
+            ))}
         </AvatarGroup>
       </Box>
     </Box>
