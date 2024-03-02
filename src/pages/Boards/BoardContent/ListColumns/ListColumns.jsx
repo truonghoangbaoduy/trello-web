@@ -2,7 +2,7 @@ import { Box, Button } from "@mui/material";
 import Column from "./Column/Column";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 
-const ListColumns = () => {
+const ListColumns = ({ columns }) => {
   return (
     <Box
       sx={{
@@ -16,8 +16,9 @@ const ListColumns = () => {
       }}
     >
       {/* Columns */}
-      <Column />
-      <Column />
+      {columns?.map((column) => (
+        <Column key={column._id} column={column} />
+      ))}
 
       <Box
         sx={{

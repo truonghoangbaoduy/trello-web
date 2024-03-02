@@ -17,8 +17,9 @@ import ArchiveIcon from "@mui/icons-material/Archive";
 import AddCardIcon from "@mui/icons-material/AddCard";
 import DragHandleIcon from "@mui/icons-material/DragHandle";
 import ListCards from "./ListCards/ListCards";
+import { mapOrder } from "~/utils/sorts";
 
-const Column = () => {
+const Column = ({ column }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -27,6 +28,8 @@ const Column = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const orderedCards = mapOrder(column?.cards, column?.cardOrderIds, "_id");
+
   return (
     <Box
       sx={{
@@ -41,7 +44,7 @@ const Column = () => {
           `calc(${theme.trello.boardContentHeight} - ${theme.spacing(5)})`,
       }}
     >
-      {/* Box Columns Footer */}
+      {/* Box Columns Header */}
       <Box
         sx={{
           height: (theme) => theme.trello.columnHeaderHeight,
@@ -55,7 +58,7 @@ const Column = () => {
           variant="h6"
           sx={{ fontSize: "1rem", fontWeight: "bold", cursor: "pointer" }}
         >
-          Column Title
+          {column?.title}
         </Typography>
         <Box>
           <Tooltip title="More options">
@@ -122,7 +125,7 @@ const Column = () => {
       </Box>
 
       {/* Box Columns ListCards */}
-      <ListCards />
+      <ListCards cards={orderedCards} />
 
       {/* Box Columns Footer */}
       <Box
