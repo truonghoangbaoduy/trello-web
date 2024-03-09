@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { cloneDeep } from "lodash";
 import { Box } from "@mui/material";
 import ListColumns from "./ListColumns/ListColumns";
@@ -13,6 +13,10 @@ import {
   DragOverlay,
   defaultDropAnimationSideEffects,
   closestCorners,
+  closestCenter,
+  pointerWithin,
+  rectIntersection,
+  getFirstCollision,
 } from "@dnd-kit/core";
 import { arrayMove } from "@dnd-kit/sortable";
 
@@ -47,6 +51,9 @@ const BoardContent = ({ board }) => {
   const [activeDragItemData, setActiveDragItemData] = useState(null);
   const [originalColumnWhenDragging, setOriginalColumnWhenDragging] =
     useState(null);
+
+  // Điểm va chạm cuối cùng (xử lý thuật toán phát hiện va chạm video 37).
+  const lastOverId = useRef(null);
 
   useEffect(() => {
     setOrderedColumns(mapOrder(board?.columns, board?.columnOrderIds, "_id"));
@@ -278,10 +285,51 @@ const BoardContent = ({ board }) => {
     }),
   };
 
+  const collisionDetectionStrategy = useCallback(
+    (args) => {
+      if (activeDragItemType === ACTIVE_DRAG_ITEM_TYPE.COLUMN) {
+        return closestCorners({ ...args });
+      }
+
+      const pointerIntersection = pointerWithin(args);
+      const intersection = !!pointerIntersection.length
+        ? pointerIntersection
+        : rectIntersection(args);
+
+      let overId = getFirstCollision(intersection, "id");
+      if (overId) {
+        const checkColumn = orderedColumns.find(
+          (column) => column._id === overId
+        );
+
+        if (checkColumn) {
+          // console.log("overId before: ", overId);
+          overId = closestCenter({
+            ...args,
+            droppableContainers: args.droppableContainers.filter(
+              (container) =>
+                container.id !== overId &&
+                checkColumn?.cardOrderIds?.includes(container.id)
+            ),
+          })[0]?.id;
+          // console.log("overId after: ", overId);
+        }
+
+        lastOverId.current = overId;
+        return [{ id: overId }];
+      }
+
+      // Nếu overId là null thì trả về mảng rỗng
+      return lastOverId.current ? [{ id: lastOverId.current }] : [];
+    },
+    [activeDragItemType, orderedColumns]
+  );
+
   return (
     <DndContext
       sensors={sensors}
-      collisionDetection={closestCorners}
+      //collisionDetection={closestCorners}
+      collisionDetection={collisionDetectionStrategy}
       onDragStart={handleDragStart}
       onDragOver={handleDragOver}
       onDragEnd={handleDragEnd}
