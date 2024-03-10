@@ -5,7 +5,7 @@ import ListColumns from "./ListColumns/ListColumns";
 import { mapOrder } from "~/utils/sorts";
 import {
   DndContext,
-  PointerSensor,
+  // PointerSensor,
   MouseSensor,
   TouchSensor,
   useSensor,
@@ -13,9 +13,9 @@ import {
   DragOverlay,
   defaultDropAnimationSideEffects,
   closestCorners,
-  closestCenter,
+  // closestCenter,
   pointerWithin,
-  rectIntersection,
+  // rectIntersection,
   getFirstCollision,
 } from "@dnd-kit/core";
 import { arrayMove } from "@dnd-kit/sortable";
@@ -292,11 +292,14 @@ const BoardContent = ({ board }) => {
       }
 
       const pointerIntersection = pointerWithin(args);
-      const intersection = !!pointerIntersection.length
-        ? pointerIntersection
-        : rectIntersection(args);
+      // console.log("pointerIntersection: ", pointerIntersection);
+      if (!pointerIntersection.length) return;
 
-      let overId = getFirstCollision(intersection, "id");
+      // const intersection = !!pointerIntersection.length
+      //   ? pointerIntersection
+      //   : rectIntersection(args);
+
+      let overId = getFirstCollision(pointerIntersection, "id");
       if (overId) {
         const checkColumn = orderedColumns.find(
           (column) => column._id === overId
@@ -304,7 +307,7 @@ const BoardContent = ({ board }) => {
 
         if (checkColumn) {
           // console.log("overId before: ", overId);
-          overId = closestCenter({
+          overId = closestCorners({
             ...args,
             droppableContainers: args.droppableContainers.filter(
               (container) =>
