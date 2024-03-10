@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback, useRef } from "react";
-import { cloneDeep } from "lodash";
+import { cloneDeep, isEmpty } from "lodash";
 import { Box } from "@mui/material";
 import ListColumns from "./ListColumns/ListColumns";
 import { mapOrder } from "~/utils/sorts";
@@ -22,6 +22,7 @@ import { arrayMove } from "@dnd-kit/sortable";
 
 import Column from "./ListColumns/Column/Column";
 import Card from "./ListColumns/Column/ListCards/Card/Card";
+import { generatePlaceholderCard } from "~/utils/formaters";
 
 const ACTIVE_DRAG_ITEM_TYPE = {
   COLUMN: "ACTIVE_DRAG_COLUMN",
@@ -104,9 +105,17 @@ const BoardContent = ({ board }) => {
       );
 
       if (nextActiveColumn) {
+        // Xóa card ở column active (hay còn gọi là column cũ)
         nextActiveColumn.cards = nextActiveColumn.cards.filter(
           (card) => card._id !== activeDraggingCardId
         );
+
+        // Thêm placeholderCard cho column nếu column rỗng sau khi kéo card cuối cùng qua column khác
+        if (isEmpty(nextActiveColumn.cards)) {
+          nextActiveColumn.cards = [generatePlaceholderCard(nextActiveColumn)];
+        }
+
+        // Cập nhật lại mảng orderCardIds
         nextActiveColumn.cardOrderIds = nextActiveColumn.cards.map(
           (card) => card._id
         );
@@ -126,11 +135,17 @@ const BoardContent = ({ board }) => {
           ...activeDraggingCardData,
           columnId: nextOverColumn._id,
         });
+
+        nextOverColumn.cards = nextOverColumn.cards.filter(
+          (card) => !card.FE_PlaceholderCard
+        );
+
         nextOverColumn.cardOrderIds = nextOverColumn.cards.map(
           (card) => card._id
         );
       }
 
+      // console.log("nextColumns: ", nextColumns);
       return nextColumns;
     });
   };
